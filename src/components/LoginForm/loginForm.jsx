@@ -1,53 +1,69 @@
-import './loginForm.css'
+import "./LoginForm.css";
+import SignupForm from "../SignUpForm/SignupForm";
+import { useState } from "react";
 
-function loginForm() {
-  return (
-    <div>
-      <div id="login-form-wrap">
-        <h2>Login</h2>
-        <form id="login-form">
-          <p>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              placeholder="Username"
-              required
-            />
-            <i className="validation">
-              <span></span>
-              <span></span>
-            </i>
-          </p>
 
-          <p>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Email Address"
-              required
-            />
-            <i className="validation">
-              <span></span>
-              <span></span>
-            </i>
-          </p>
+function LoginForm() {
 
-          <p>
-            <input type="submit" id="login" value="Login" />
-          </p>
-        </form>
+  const [Form, setForm] = useState('Login');
 
-        <div id="create-account-wrap">
-          <p>
-            Not a member? 
-            <a href="#">Create Account</a>
-          </p>
+  const changeForm = () => {
+    setForm('SignUp')
+  }
+
+  if(Form === 'Login') {
+    return (
+      <div>
+        <div id="login-form-wrap">
+          <h2>Login</h2>
+          <form id="login-form">
+            <p>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Username"
+                required
+              />
+              <i className="validation">
+                <span></span>
+                <span></span>
+              </i>
+            </p>
+  
+            <p>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Password"
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                required
+              />
+            </p>
+  
+            <p>
+              <input type="submit" id="login" value="Login" />
+            </p>
+          </form>
+  
+          <div id="create-account-wrap">
+            <p>
+              Not a member?
+              <a href="javascript:void(0)" onClick={changeForm}>
+              Create Account
+              </a>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
+  else{
+  
+    return (<SignupForm/>)
+  }
+  
 }
 
-export default loginForm;
+export default LoginForm;
