@@ -58,7 +58,7 @@ function SignupForm() {
                     </p>
         
                     <p>
-                      <input type="submit" id="login" value="Login" />
+                      <input type="submit" id="login" value="Sign Up" />
                     </p>
                   </form>
         
