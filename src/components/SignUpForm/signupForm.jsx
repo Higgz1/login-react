@@ -8,6 +8,13 @@ function SignupForm() {
     setForm("Login");
   };
 
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    console.log(e)
+
+
+  }
+
   if (Form === "SignUp") {
     return (
       <div>
@@ -15,7 +22,7 @@ function SignupForm() {
         <div>
           <div id="login-form-wrap">
             <h2>Sign Up</h2>
-            <form id="login-form">
+            <form id="login-form" onSubmit={handleSubmit}>
               <p>
                 <input
                   type="text"

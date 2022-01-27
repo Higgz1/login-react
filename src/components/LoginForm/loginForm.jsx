@@ -9,12 +9,19 @@ function LoginForm() {
     setForm("SignUp");
   };
 
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    console.log(e)
+
+
+  }
+
   if (Form === "Login") {
     return (
       <div>
         <div id="login-form-wrap">
           <h2>Login</h2>
-          <form id="login-form">
+          <form id="login-form" onSubmit={handleSubmit}>
             <p>
               <input
                 type="text"
@@ -35,7 +42,6 @@ function LoginForm() {
                 id="password"
                 name="password"
                 placeholder="Password"
-                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                 required
               />
             </p>

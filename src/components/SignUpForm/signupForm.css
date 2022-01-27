@@ -40,6 +40,10 @@ h2 {
   #login-form {
     padding: 0 60px;
   }
+
+  #login-form:invalid>#submit {
+    pointer-events: none;
+  }
   
   input {
     display: block;
