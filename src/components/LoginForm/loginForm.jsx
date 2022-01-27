@@ -3,18 +3,25 @@ import SignupForm from "../SignUpForm/SignupForm";
 import { useState } from "react";
 
 function LoginForm() {
+  const [Email, setEmail] = useState("");
+  const [Key, setKey] = useState("");
   const [Form, setForm] = useState("Login");
 
   const changeForm = () => {
     setForm("SignUp");
   };
 
-  const handleSubmit = (e) =>{
+  const getText = (e) => {
+    setEmail(e.target.value);
+  };
+  const getKey = (e) => {
+    setKey(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e)
-
-
-  }
+    console.log(e);
+  };
 
   if (Form === "Login") {
     return (
@@ -24,10 +31,12 @@ function LoginForm() {
           <form id="login-form" onSubmit={handleSubmit}>
             <p>
               <input
-                type="text"
-                id="username"
-                name="username"
-                placeholder="Username"
+                onChange={getText}
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email Address"
+                pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3}"
                 required
               />
               <i className="validation">
@@ -38,6 +47,7 @@ function LoginForm() {
 
             <p>
               <input
+                onChange={getKey}
                 type="password"
                 id="password"
                 name="password"

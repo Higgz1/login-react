@@ -64,7 +64,7 @@ function SignupForm() {
 
               <div className="role">
                 <select className="role" required>
-                  <option selected hidden value=""  >
+                  <option defaultValue hidden value=""  >
                     Select a role
                   </option>
                   <option value="grapefruit">
