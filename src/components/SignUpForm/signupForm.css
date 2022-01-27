@@ -53,7 +53,7 @@ h2 {
   
   input[type="text"],
   input[type="email"],
-  input[type="password"] {
+  input[type="password"],select {
     width: 100%;
     padding: 0 0 0 10px;
     margin: 0;
@@ -70,12 +70,14 @@ h2 {
   }
   input[type="text"]:focus,
   input[type="email"]:focus,
-  input[type="password"]:focus {
+  input[type="password"]:focus,
+  select:focus{
     border-color: #3ca9e2;
   }
   input[type="text"]:focus:invalid,
   input[type="email"]:focus:invalid,
-  input[type="password"]:focus:invalid {
+  input[type="password"]:focus:invalid
+  {
     color: #cc1e2b;
     border-color: #cc1e2b;
   }
@@ -149,4 +151,16 @@ h2 {
     padding: 10px 0;
     border-radius: 0 0 4px 4px;
   }
+
+  .role{
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    outline: none;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 4px;
+  }
+
+
   

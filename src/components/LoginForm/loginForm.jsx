@@ -2,16 +2,14 @@ import "./LoginForm.css";
 import SignupForm from "../SignUpForm/SignupForm";
 import { useState } from "react";
 
-
 function LoginForm() {
-
-  const [Form, setForm] = useState('Login');
+  const [Form, setForm] = useState("Login");
 
   const changeForm = () => {
-    setForm('SignUp')
-  }
+    setForm("SignUp");
+  };
 
-  if(Form === 'Login') {
+  if (Form === "Login") {
     return (
       <div>
         <div id="login-form-wrap">
@@ -30,7 +28,7 @@ function LoginForm() {
                 <span></span>
               </i>
             </p>
-  
+
             <p>
               <input
                 type="password"
@@ -41,29 +39,26 @@ function LoginForm() {
                 required
               />
             </p>
-  
+
             <p>
               <input type="submit" id="login" value="Login" />
             </p>
           </form>
-  
+
           <div id="create-account-wrap">
             <p>
               Not a member?
               <a href="javascript:void(0)" onClick={changeForm}>
-              Create Account
+                Create Account
               </a>
             </p>
           </div>
         </div>
       </div>
     );
+  } else {
+    return <SignupForm />;
   }
-  else{
-  
-    return (<SignupForm/>)
-  }
-  
 }
 
 export default LoginForm;
