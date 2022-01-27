@@ -4,16 +4,41 @@ import LoginForm from "../LoginForm/LoginForm";
 
 function SignupForm() {
   const [Form, setForm] = useState("SignUp");
+  const [Username, setUsername] = useState("");
+  const [Email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
+  const [Role, setRole] = useState("");
+
   const changeForm = () => {
     setForm("Login");
   };
 
-  const handleSubmit = (e) =>{
+  const getUserName = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const getEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const getPassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const getRole = (e) => {
+    setRole(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e)
-
-
-  }
+    const newUser = {
+      Username,
+      Email,
+      Password,
+      Role
+    };
+    console.log(newUser);
+  };
 
   if (Form === "SignUp") {
     return (
@@ -27,6 +52,7 @@ function SignupForm() {
                 <input
                   type="text"
                   id="username"
+                  onChange={getUserName}
                   name="username"
                   placeholder="Username"
                   required
@@ -42,6 +68,7 @@ function SignupForm() {
                   type="email"
                   id="email"
                   name="email"
+                  onChange={getEmail}
                   placeholder="Email Address"
                   pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3}"
                   required
@@ -54,6 +81,7 @@ function SignupForm() {
 
               <p>
                 <input
+                  onChange={getPassword}
                   type="password"
                   id="password"
                   name="password"
@@ -63,14 +91,12 @@ function SignupForm() {
               </p>
 
               <div className="role">
-                <select className="role" required>
-                  <option defaultValue hidden value=""  >
+                <select className="role" required onChange={getRole}>
+                  <option defaultValue hidden value="">
                     Select a role
                   </option>
-                  <option value="grapefruit">
-                    User
-                  </option>
-                  <option value="lime">Creator</option>
+                  <option value="user">User</option>
+                  <option value="creator">Creator</option>
                 </select>
               </div>
 

@@ -4,23 +4,29 @@ import { useState } from "react";
 
 function LoginForm() {
   const [Email, setEmail] = useState("");
-  const [Key, setKey] = useState("");
+  const [Password, setPassword] = useState("");
   const [Form, setForm] = useState("Login");
 
   const changeForm = () => {
     setForm("SignUp");
   };
 
-  const getText = (e) => {
+  const getEmail = (e) => {
     setEmail(e.target.value);
   };
-  const getKey = (e) => {
-    setKey(e.target.value);
+  const getPassword = (e) => {
+    setPassword(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e);
+    const newUser = {
+      
+      Email,
+      Password,
+      
+    };
+    console.log(newUser);
   };
 
   if (Form === "Login") {
@@ -31,7 +37,7 @@ function LoginForm() {
           <form id="login-form" onSubmit={handleSubmit}>
             <p>
               <input
-                onChange={getText}
+                onChange={getEmail}
                 type="email"
                 id="email"
                 name="email"
@@ -47,7 +53,7 @@ function LoginForm() {
 
             <p>
               <input
-                onChange={getKey}
+                onChange={getPassword}
                 type="password"
                 id="password"
                 name="password"
