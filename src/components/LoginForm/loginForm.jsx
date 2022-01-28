@@ -3,8 +3,8 @@ import SignupForm from "../SignUpForm/SignupForm";
 import { useState } from "react";
 
 function LoginForm() {
-  const [Email, setEmail] = useState("");
-  const [Password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [Form, setForm] = useState("Login");
 
   const changeForm = () => {
@@ -14,19 +14,35 @@ function LoginForm() {
   const getEmail = (e) => {
     setEmail(e.target.value);
   };
+
   const getPassword = (e) => {
     setPassword(e.target.value);
+  };
+
+  const login = async (newUser) => {
+
+    console.log('from create user function',newUser);
+
+    const response = await fetch("http://localhost:3000/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newUser),
+    });
+
+    const data = await response.json();
+    console.log(data);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newUser = {
-      
-      Email,
-      Password,
-      
+      email,
+      password,
     };
-    console.log(newUser);
+    
+    login(newUser)
   };
 
   if (Form === "Login") {
