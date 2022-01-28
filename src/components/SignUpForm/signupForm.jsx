@@ -3,6 +3,8 @@ import { useState } from "react";
 import LoginForm from "../LoginForm/LoginForm";
 import {useContext } from 'react'
 import UserContext from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
+
 
 function SignupForm() {
   const [Form, setForm] = useState("SignUp");
@@ -11,7 +13,9 @@ function SignupForm() {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
   const [name, setName] = useState("");
-  const {signUp} = useContext(UserContext)
+  const {signUp} = useContext(UserContext);
+  let navigate = useNavigate();
+
 
 
   const changeForm = () => {
@@ -48,7 +52,9 @@ function SignupForm() {
       role
     };
     
-    signUp(newUser)
+    signUp(newUser).then((resp)=>{
+      navigate("/content", { replace: true });
+      })
   };
 
   if (Form === "SignUp") {
