@@ -25,11 +25,38 @@ export const UserProvider = ({ children }) => {
     setUser(decoded.user)
   };
 
+  const signUp = async (newUser) => {
+    const response = await fetch("http://localhost:3000/users/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newUser),
+    });
+
+    const user_data = await response.json();
+
+    // console.log('response',user_data);
+    const user_details = {
+        email:user_data.email,
+        password:newUser.password
+    }
+    console.log(user_details);
+    login(user_details)
+
+    // var token = data.access_token;
+    // var decoded = jwtDecode(token);
+
+    // console.log(decoded.user);
+    // setUser(decoded.user)
+  };
+
   return (
     <UserContext.Provider
       value={{
         user,
         login,
+        signUp,
       }}
     >
       {children}

@@ -1,16 +1,25 @@
 import "./SignupForm.css";
 import { useState } from "react";
 import LoginForm from "../LoginForm/LoginForm";
+import {useContext } from 'react'
+import UserContext from "../../context/UserContext";
 
 function SignupForm() {
   const [Form, setForm] = useState("SignUp");
-  const [Username, setUsername] = useState("");
-  const [Email, setEmail] = useState("");
-  const [Password, setPassword] = useState("");
-  const [Role, setRole] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
+  const [name, setName] = useState("");
+  const {signUp} = useContext(UserContext)
+
 
   const changeForm = () => {
     setForm("Login");
+  };
+
+  const getName = (e) => {
+    setName(e.target.value);
   };
 
   const getUserName = (e) => {
@@ -32,12 +41,14 @@ function SignupForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newUser = {
-      Username,
-      Email,
-      Password,
-      Role
+      name,
+      username,
+      email,
+      password,
+      role
     };
-    console.log(newUser);
+    
+    signUp(newUser)
   };
 
   if (Form === "SignUp") {
@@ -48,6 +59,23 @@ function SignupForm() {
           <div id="login-form-wrap">
             <h2>Sign Up</h2>
             <form id="login-form" onSubmit={handleSubmit}>
+
+            <p>
+                <input
+                  type="text"
+                  id="name"
+                  onChange={getName}
+                  name="name"
+                  placeholder="Name"
+                  required
+                />
+                <i className="validation">
+                  <span></span>
+                  <span></span>
+                </i>
+              </p>
+
+
               <p>
                 <input
                   type="text"
