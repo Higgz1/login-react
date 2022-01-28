@@ -48,12 +48,18 @@ export const UserProvider = ({ children }) => {
     login(user_details)
   };
 
+  const LogOut =  () => {
+    setUser("")
+
+  };
+
   return (
     <UserContext.Provider
       value={{
         user,
         login,
         signUp,
+        LogOut
       }}
     >
       {children}
