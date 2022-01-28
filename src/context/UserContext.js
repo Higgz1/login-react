@@ -1,10 +1,12 @@
 import { createContext, useState } from "react";
+// import { useNavigate } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({});
+  
 
   const login = async (newUser) => {
     const response = await fetch("http://localhost:3000/users/login", {
@@ -23,6 +25,7 @@ export const UserProvider = ({ children }) => {
 
     console.log(decoded.user);
     setUser(decoded.user)
+    
   };
 
   const signUp = async (newUser) => {
@@ -43,12 +46,6 @@ export const UserProvider = ({ children }) => {
     }
     console.log(user_details);
     login(user_details)
-
-    // var token = data.access_token;
-    // var decoded = jwtDecode(token);
-
-    // console.log(decoded.user);
-    // setUser(decoded.user)
   };
 
   return (
