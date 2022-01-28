@@ -6,11 +6,12 @@ const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({});
+  const [auth, setAuth] = useState(false);
   
 
   const login = async (newUser) => {
     setUser({})
-    const response = await fetch("http://localhost:3000/users/login", {
+    const response = await fetch("https://react-login-test1.herokuapp.com/users/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -26,12 +27,13 @@ export const UserProvider = ({ children }) => {
 
     console.log(decoded.user);
     setUser(decoded.user)
+    setAuth(true)
     
   };
 
   const signUp = async (newUser) => {
     setUser({})
-    const response = await fetch("http://localhost:3000/users/", {
+    const response = await fetch("https://react-login-test1.herokuapp.com/users/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -39,15 +41,15 @@ export const UserProvider = ({ children }) => {
       body: JSON.stringify(newUser),
     });
 
-    const user_data = await response.json();
+    const user_data = await response.json()
 
     // console.log('response',user_data);
     const user_details = {
         email:user_data.email,
         password:newUser.password
     }
-    console.log(user_details);
-    login(user_details)
+ 
+    await login(user_details)
   };
 
   const LogOut =  () => {
@@ -59,6 +61,7 @@ export const UserProvider = ({ children }) => {
     <UserContext.Provider
       value={{
         user,
+        auth,
         login,
         signUp,
         LogOut

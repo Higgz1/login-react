@@ -142,10 +142,8 @@ function SignupForm() {
             <div id="create-account-wrap">
               <p>
                 Already have an account?
-                <a href="javascript:void(0)" onClick={changeForm}>
-                  Login
-                </a>
               </p>
+              <button type="button" onClick={changeForm}>Login</button>
             </div>
           </div>
         </div>

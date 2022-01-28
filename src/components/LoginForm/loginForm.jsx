@@ -83,10 +83,8 @@ function LoginForm() {
           <div id="create-account-wrap">
             <p>
               Not a member?
-              <a href="javascript:void(0)" onClick={changeForm}>
-                Create Account
-              </a>
             </p>
+            <button type="button" onClick={changeForm}>Create Account</button>
           </div>
         </div>
       </div>

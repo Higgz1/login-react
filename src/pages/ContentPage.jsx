@@ -1,41 +1,66 @@
 import React from "react";
 import Card from "../components/common/Card";
 import { useContext } from "react";
-import { useEffect } from "react";
 import UserContext from "../context/UserContext";
-import { useNavigate } from "react-router-dom";
 import YoutubePlayer from "../components/Iframe/YoutubePlayer";
 import "./ContetPage.css";
+import { Navigate } from "react-router-dom";
 
 function ContentPage() {
-    
-  const { user } = useContext(UserContext);
-  let navigate = useNavigate();
+  const { user, auth } = useContext(UserContext);
 
+  if (auth === false) {
+    return <Navigate to="/" replace={true} />;
+  }
 
-
-  if (user.role === "user") {
+  if (auth === true && user.role === "user") {
     return (
       <div>
         <Card>
-          <h2>User Content</h2>
-          <p>Hi there {user.name}.Sit back and enjoy the show .Hope you Enjoy!</p>
-          <YoutubePlayer embedId={'cBibjRQMe1o'}/>
+          <h2>User Details</h2>
+          <table>
+            <tr>
+              <th>Name</th>
+              <th>UserName</th>
+              <th>User Email</th>
+            </tr>
+            <tr>
+              <td>{user.name}</td>
+              <td>{user.username}</td>
+              <td>{user.email}</td>
+            </tr>
+          </table>
         </Card>
       </div>
     );
   }
-  
-  return (
-    <div>
+
+  if (auth === true && user.role === "creator") {
+    return (
+      <div>
         <Card>
           <h2>Creator Content</h2>
-          <p>Hi there {user.name},you've made it this far you might  as well have a treat.Hope you Enjoy!</p>
-          <YoutubePlayer embedId={'EE-xtCF3T94'}/>
+          <table>
+            <tr>
+              <th>Name</th>
+              <th>UserName</th>
+              <th>User Email</th>
+            </tr>
+            <tr>
+              <td>{user.name}</td>
+              <td>{user.username}</td>
+              <td>{user.email}</td>
+            </tr>
+          </table>
+          <p>
+            Hi there {user.name}, {user.email} .You've made it this far you might
+            as well have a treat.Hope you Enjoy some additional content!
+          </p>
+          <YoutubePlayer embedId={"EE-xtCF3T94"} />
         </Card>
-    </div>
-  );
-  
+      </div>
+    );
+  }
 }
 
 export default ContentPage;

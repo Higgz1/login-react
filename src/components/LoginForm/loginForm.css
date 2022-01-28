@@ -153,3 +153,20 @@ input[type="submit"]:hover {
   padding: 10px 0;
   border-radius: 0 0 4px 4px;
 }
+
+button {
+  background-color: #4CAF50; /* Green */
+  border-radius: 4px;
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+button[type="button"]:hover {
+  background-color: #4caf4fda;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
