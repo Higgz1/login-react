@@ -3,12 +3,18 @@ import SignupForm from "../SignUpForm/SignupForm";
 import { useState } from "react";
 import {useContext } from 'react'
 import UserContext from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
+
+
 
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [Form, setForm] = useState("Login");
-  const {login} = useContext(UserContext)
+  const {login} = useContext(UserContext);
+  let navigate = useNavigate();
+  
+
 
   const changeForm = () => {
     setForm("SignUp");
@@ -31,7 +37,9 @@ function LoginForm() {
       password,
     };
     
-    login(newUser)
+    login(newUser).then((resp)=>{
+    navigate("/content", { replace: true });
+    })
   };
 
   if (Form === "Login") {
