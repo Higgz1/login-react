@@ -9,6 +9,7 @@ export const UserProvider = ({ children }) => {
   
 
   const login = async (newUser) => {
+    setUser({})
     const response = await fetch("http://localhost:3000/users/login", {
       method: "POST",
       headers: {
@@ -29,6 +30,7 @@ export const UserProvider = ({ children }) => {
   };
 
   const signUp = async (newUser) => {
+    setUser({})
     const response = await fetch("http://localhost:3000/users/", {
       method: "POST",
       headers: {
